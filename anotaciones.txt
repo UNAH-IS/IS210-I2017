@@ -1,0 +1,18 @@
+Modificadores de Acceso:
+*default: Es cuando no se asigna ningun modificador a la variable/objeto/metodo, es similar al modificador public con la salvedad de que no son visibles desde otro paquete.
+*public: Puede acceder a los atributos/metodos desde cualquier lado.
+*private: Solo puede acceder a los atributos/metodos dentro de la misma clase o dentro de los metodos de la misma clase.
+*protected -> Herencia.
+
+Modificador static: Se utiliza para acceder a un atributo o metodo de una clase sin necesidad de instanciar la clase que lo contiene. El valor de un atributo estatico sera el mismo para cualquier instancia de una clase. 
+	Para acceder a un atributo estatico se hace de la siguiente forma:
+		NombreClase.nombreAtributo;
+	Para acceder a un metodo estatico se hace de la siguiente forma:
+		NombreClase.nombreMetodo();
+
+
+Pilares de la Programacion Orientada a Objetos (POO - OOP)
+*Abstraccion:
+*Encapsulacion:	Definir atributos como privados para ser accedidos mediante metodos publicos, esto se hace para proteger al atributo interno de modificaciones accidentales.
+*Herencia:--> Unidad II
+*Polimorfismo:

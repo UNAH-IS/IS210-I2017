@@ -17,10 +17,10 @@ public class MenuCiclico {
 
 			switch (opcion) {
 			case 1:
-				System.out.println("Agregar");
+				agregarRegistro();
 				break;
 			case 2:
-				System.out.println("Modificar");
+				modificarRegistro();
 				break;
 			case 3:
 				System.out.println("Eliminar");
@@ -32,6 +32,14 @@ public class MenuCiclico {
 				break;
 			}
 		}while(opcion!=0);
+	}
+
+	static void agregarRegistro(){
+		System.out.println("Agregar");
+	}
+
+	static void modificarRegistro(){
+		System.out.println("Modificar");
 	}
 
 }
