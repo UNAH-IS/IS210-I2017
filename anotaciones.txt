@@ -9,6 +9,7 @@ Modificador static: Se utiliza para acceder a un atributo o metodo de una clase 
 		NombreClase.nombreAtributo;
 	Para acceder a un metodo estatico se hace de la siguiente forma:
 		NombreClase.nombreMetodo();
+Usualmente los atributos y metodos estaticos son pubilcos.
 
 
 Pilares de la Programacion Orientada a Objetos (POO - OOP)
