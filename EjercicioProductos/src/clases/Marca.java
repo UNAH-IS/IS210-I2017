@@ -1,5 +1,7 @@
 package clases;
 
+import javax.swing.JOptionPane;
+
 public class Marca {
 	private int codigoMarca;
 	private String nombreMarca;
@@ -40,5 +42,11 @@ public class Marca {
 	@Override
 	public String toString() {
 		return "Marca [codigoMarca=" + codigoMarca + ", nombreMarca=" + nombreMarca + ", pais=" + pais + "]";
+	}
+
+	public void solicitarInformacion(){
+		this.codigoMarca = Integer.parseInt(JOptionPane.showInputDialog("Codigo Marca: ",this.codigoMarca));
+		this.nombreMarca = JOptionPane.showInputDialog("Marca: ",this.nombreMarca);
+		this.pais = JOptionPane.showInputDialog("Pais Marca: ",this.pais);
 	}
 }

@@ -53,27 +53,31 @@ public class Principal {
 		//Crear una instancia del tipo Producto
 		Producto p = new Producto();
 		//Inicializar los atributos, solicitar la informacion
-		p.setCodigoProducto(JOptionPane.showInputDialog("Codigo producto: "));
-		p.setNombreProducto(JOptionPane.showInputDialog("Nombre Producto: "));
-		p.setPrecioCompra(Double.parseDouble(JOptionPane.showInputDialog("Precio Compra: ")));
-		p.setPrecioVenta(Double.parseDouble(JOptionPane.showInputDialog("Precio Venta: ")));
-		p.setCantidadExistencia(Double.parseDouble(JOptionPane.showInputDialog("Existencia: ")));
-		Marca m = new Marca();
-		m.setCodigoMarca(Integer.parseInt(JOptionPane.showInputDialog("Codigo Marca: ")));
-		m.setNombreMarca(JOptionPane.showInputDialog("Marca: "));
-		m.setPais(JOptionPane.showInputDialog("Pais Marca: "));
-		p.setMarca(m);
-
+		p.solicitarInformacion();
 		//Agregar objeto al ArrayList.
 		productos.add(p);
 	}
 
 	public void modificarProducto(){
-
+		int indiceModificar = Integer.parseInt(JOptionPane.showInputDialog("¿Que objeto desea modificar? (0-"+
+				(productos.size()-1)+")"));
+		Producto p = productos.get(indiceModificar);
+		p.solicitarInformacion();
+		productos.set(indiceModificar, p);
 	}
 
 	public void eliminarProducto(){
+		//Solicitar el indice del objeto a eliminar
+		int indiceEliminar = Integer.parseInt(JOptionPane.showInputDialog("¿Que objeto desea eliminar? (0-"+
+				(productos.size()-1)+")"));
+		//Eliminar el objeto del arraylist
 
+		int resultado = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el producto " + productos.get(indiceEliminar).getNombreProducto());
+		//System.out.println("Resultado Opcion: " + resultado);
+		if (resultado == 0){
+			productos.remove(indiceEliminar);
+			JOptionPane.showMessageDialog(null,"Objeto eliminado.");
+		}
 	}
 
 	public void mostrarInformacion(){
