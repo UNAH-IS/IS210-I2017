@@ -1,6 +1,6 @@
 package clases;
 
-public class Persona {
+public class Persona{
 	protected String nombre;
 	protected String apellido;
 	protected int edad;
@@ -90,8 +90,8 @@ public class Persona {
 		this.correo = correo;
 	}
 
-	public void aprobar(){
-
+	public void aprobar(int parametro){
+		System.out.println("Aprobar, este metodo es de la clase persona");
 	}
 
 	public void reprobar(){

@@ -18,4 +18,15 @@ public class Alumno extends Persona{
 	public void imprimirNombreCompleto(){
 		System.out.println(nombre + " " + apellido);
 	}
+
+	@Override
+	public void aprobar(int p){
+		super.aprobar(p);
+		System.out.println("Aprobar, este metodo es de la clase Alumno");
+	}
+
+	@Override
+	public String toString(){
+		return "Alumno: "+super.toString() + ", Cuenta: " + this.cuenta;
+	}
 }
