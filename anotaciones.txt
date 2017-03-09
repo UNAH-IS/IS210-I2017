@@ -17,6 +17,31 @@ Pilares de la Programacion Orientada a Objetos (POO - OOP)
 
 *Encapsulacion:	Definir atributos como privados para ser accedidos mediante metodos publicos, esto se hace para proteger al atributo interno de modificaciones accidentales.
 
-*Herencia:--> Unidad II
+*Herencia: Es una funcionalidad que permite crear una clase a partir de otra, de tal forma que la clase base se le conoce como clase padre y la nueva clase se le conoce como clase hija, esta ultima hereda todos los atributos y metodos de la clase padre. Los atributos de una clase padre se suelen definir con el modificador protected para que puedan ser accedidos desde clases hijas.
+Una de las principales ventajas de la herencia es la reutilizacion de codigo.
 
-*Polimorfismo:
+Sobreescritura de metodos (Override): Volver a escribir un metodo que estaba previamente definido en una clase padre, este nuevo metodo se reescribe en la clase y puede ejecutar instrucciones complemente diferentes.
+	
+	Clases Abstractas: Generalmente se utiliza para clases padre, esto debido a que consolidan atributos y metodos en comun de varias clases como un resumen de las mismas. (abstract => resumen).
+	Para definir una clase como abstracta se tiene  que utilizar el modificador abstract. Una clase de este tipo debe cumplir con las siguientes reglas:
+	1. Una clase abstracta no se puede instanciar.
+	2. Una clase abstracta puede tener 0 o muchos metodos abstractos.
+	3. Un metodo abstracto no tiene cuerpo. Es decir  no lleva llaves ({}) finaliza con ;
+	4. Si una clase tiene al menos un metodo abstracto la clase tambien tiene que ser abstracta.
+	5. Un metodo abstracto tiene que sobreescribirse obligatoriamente en una clase hija.
+	6. Generalmente se utiliza para definir estructuras de clases padre.
+	7. Aunque no se intancien, las clases abstractas si pueden tener constructores.
+
+
+
+
+*Polimorfismo: 
+	Poli: Muchos
+	morfismo: formas
+
+	Funcionalidad que permite utilizar elementos que tienen la misma forma pero que dependiendo de su definición tienen una diferente funcionalidad. En resumen misma forma diferente funcionalidad.
+
+	Algunas aplicaciones de polimorfismo:
+	*Sobrecarga de funciones
+	*Sobreescritura de metodos
+	*Compatibilidad entre clases padre e hijas.

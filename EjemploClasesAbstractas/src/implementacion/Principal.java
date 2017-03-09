@@ -18,32 +18,24 @@ public class Principal {
 		Maestro m1 = new Maestro("Luis","Rodriguez",55,"M","Ing Sistemas","0801456545","45454540","juan@gmail.com",34534,34534.34);
 		Maestro m2 = new Maestro("Jorge","Rodriguez",55,"M","Ing Sistemas","0801456545","45454540","juan@gmail.com",34534,34534.34);
 		Maestro m3 = new Maestro("Jose","Rodriguez",55,"M","Ing Sistemas","0801456545","45454540","juan@gmail.com",34534,34534.34);
+		/*
+		Una clase abstracta no se puede instanciar.
 		Persona p1 = new Persona("Ana","Rodriguez",55,"M","Ing Sistemas","0801456545","45454540","juan@gmail.com");
 		Persona p2 = new Persona("Matusalen","Rodriguez",55,"M","Ing Sistemas","0801456545","45454540","juan@gmail.com");
 		Persona p3 = new Persona("Rigoberto","Rodriguez",55,"M","Ing Sistemas","0801456545","45454540","juan@gmail.com");
+		*/
 
 		Persona a4 = new Alumno("ElBrayan","Rodriguez",55,"M","Ing Sistemas","0801456545","45454540","juan@gmail.com","2001212");
 		personaX = a1;
-		personas.add(p1);
 		personas.add(a1);
-		personas.add(p2);
 		personas.add(m3);
-		personas.add(p3);
 		personas.add(m1);
 		personas.add(a2);
 		personas.add(a3);
 		personas.add(m2);
 		personas.add(a4);
 
-		metodoX(a1);
-		metodoX(m1);
-		metodoX(p1);
-		//a.toString()
-		/*System.out.println(a.toString());
-		System.out.println(m.toString());
-		a.aprobar(34);*/
-
-		// objeto instanceof Clase
+				// objeto instanceof Clase
 		System.out.println("Alumnos");
 		for(int i = 0;i<personas.size();i++){
 			if (personas.get(i) instanceof Alumno)
@@ -55,17 +47,6 @@ public class Principal {
 			if (personas.get(i) instanceof Maestro)
 				System.out.println(personas.get(i).toString());
 		}
-
-
-		System.out.println("Personas");
-		for(int i = 0;i<personas.size();i++){
-			if (!(personas.get(i) instanceof Alumno) && !(personas.get(i) instanceof Maestro))
-				System.out.println(personas.get(i).toString());
-		}
-	}
-
-	public void metodoX(Persona p){
-		System.out.println(p.toString());
 	}
 
 	public static void main(String[] args) {
