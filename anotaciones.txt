@@ -32,7 +32,24 @@ Sobreescritura de metodos (Override): Volver a escribir un metodo que estaba pre
 	6. Generalmente se utiliza para definir estructuras de clases padre.
 	7. Aunque no se intancien, las clases abstractas si pueden tener constructores.
 
+Interfaces (Interfaces):
+Son estructuras similares a una clase, se utilizan para simular herencia multiple, ya que en Java solo se puede heredar de un sola Clase.
+Para definir una interfaz se debe utilizar la palabra reservada interface en vez de class.
+Usualmente se le conoce como "clases abstractas puras" esto es porque se rige por las siguientes reglas:
+1. Todos sus metodos son abstractos, el uso del modificador abstract es opcional, sin embargo siempre son abstractos.
+2. Todos sus atributos son constantes estaticas, es decir son static final.
+3. No se pueden instanciar.
+4. No tienen constructores.
+5. Todos sus miembros son public.
+6. Para aplicar herencia entre una clase y una interfaz se utiliza implements en vez de extends.
+7. Se puede aplicar herencia entre interfaz e interfaz, en este caso se debe utilizar extends.
+8. Es posible hereder de multiples interfaces.
 
+Usos:
+Librerias de constantes.
+Definir reglas de desarrollo (moldes).
+Agregar compatibilidad entre clases.
+El uso de Listeners o escuchas, estos se utilizan para identificar eventos.
 
 
 *Polimorfismo: 

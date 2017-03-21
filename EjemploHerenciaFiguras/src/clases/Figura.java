@@ -1,6 +1,7 @@
 package clases;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 public abstract class Figura {
 	protected int x;
@@ -44,5 +45,5 @@ public abstract class Figura {
 		return "Figura [x=" + x + ", y=" + y + ", color=" + color + "]";
 	}
 
-	public abstract void dibujar();
+	public abstract void dibujar(Graphics g);
 }
