@@ -8,11 +8,12 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+
+import clases.Jugador;
 
 public class Juego extends Canvas implements KeyListener{
 	private JFrame ventana;
@@ -28,7 +29,7 @@ public class Juego extends Canvas implements KeyListener{
 	int fps; //Fotogramas por segundo
 
 	public static HashMap<String,BufferedImage> imagenes = new HashMap<String,BufferedImage>();
-
+	private Jugador jugador;
 	public Juego(){
 		cargarImagenes();
 		inicializarObjetosJuego();
@@ -51,7 +52,7 @@ public class Juego extends Canvas implements KeyListener{
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Terminar aplicacion cuando se de click en la X
 		ventana.setSize(ANCHO_VENTANA, ALTO_VENTANA); //Establecer las dimensiones de la ventana
 		ventana.setLocationRelativeTo(null); //Centrar ventana en el escritorio
-		ventana.setResizable(false);
+		//ventana.setResizable(false);
 		//Ventana en fullscreen
 		//ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		//ventana.setUndecorated(true);
@@ -61,38 +62,47 @@ public class Juego extends Canvas implements KeyListener{
 	}
 
 	public void inicializarObjetosJuego(){
-
+		jugador =new Jugador(100,370, "auto");
 	}
 
 	public void verificarColisiones(){
-		System.out.println("Verificando colisiones");
+		//System.out.println("Verificando colisiones");
 	}
 
 	public void limpiarMemoria(){
-		System.out.println("Limpiando memoria");
+		//System.out.println("Limpiando memoria");
 	}
 
 	//Cargar Imagenes
 	public void cargarImagenes(){
-
+		try {
+			imagenes.put("auto", ImageIO.read(getClass().getResource("/recursos/auto.png")));
+			imagenes.put("auto2", ImageIO.read(getClass().getResource("/recursos/auto2.png")));
+			imagenes.put("fondo", ImageIO.read(getClass().getResource("/recursos/background1.png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
 	//Metodo para pintar los componentes del juego
 	private void pintar(){
-        System.out.println("Pintando");
+        //System.out.println("Pintando");
         g2D = (Graphics2D)dobleBuffer.getDrawGraphics(); //Obtener la instancia de Graphics para pintar los elementos
 
         //Puede borrar las siguientes 4 lineas
-        g2D.setColor(new Color(255,0,0)); //Definir el color negro en el contexto
+        g2D.setColor(new Color(10,0,0)); //Definir el color negro en el contexto
         g2D.fillRect(0, 0, ANCHO_VENTANA, ALTO_VENTANA); //Dibujar un rectangulo
         g2D.setColor(Color.WHITE); //Definir el color blanco en el contexto
 
+        g2D.drawImage(imagenes.get("fondo"),0,0,this);
+        jugador.dibujar(g2D, this);
         dobleBuffer.show(); //Mostrar lo que se ha dibujado
 	}
 
 	public void actualizar(){
-		System.out.println("Actualizando");
+		//System.out.println("Actualizando");
+		jugador.mover();
 	}
 
 	public void cicloPrincipal(){
@@ -131,7 +141,8 @@ public class Juego extends Canvas implements KeyListener{
 	public void keyPressed(KeyEvent e){
         switch(e.getKeyCode()){
         	case KeyEvent.VK_SPACE:
-
+        		System.out.println("Presiono espacio");
+        		jugador.setVelocidad(5);
         		break;
         }
     }
@@ -140,7 +151,8 @@ public class Juego extends Canvas implements KeyListener{
     public void keyReleased(KeyEvent e) {
         switch(e.getKeyCode()){
 	        case KeyEvent.VK_SPACE:
-
+	        	System.out.println("Solto espacio");
+	        	jugador.setVelocidad(2);
 	    		break;
         }
     }
