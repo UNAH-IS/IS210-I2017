@@ -13,6 +13,8 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import clases.Fondo;
+import clases.Item;
 import clases.Jugador;
 
 public class Juego extends Canvas implements KeyListener{
@@ -30,6 +32,8 @@ public class Juego extends Canvas implements KeyListener{
 
 	public static HashMap<String,BufferedImage> imagenes = new HashMap<String,BufferedImage>();
 	private Jugador jugador;
+	private Fondo fondo;
+	private Item item;
 	public Juego(){
 		cargarImagenes();
 		inicializarObjetosJuego();
@@ -63,6 +67,8 @@ public class Juego extends Canvas implements KeyListener{
 
 	public void inicializarObjetosJuego(){
 		jugador =new Jugador(100,370, "auto");
+		fondo = new Fondo(0,0,"fondo");
+		item = new Item(300,390,"heart");
 	}
 
 	public void verificarColisiones(){
@@ -78,7 +84,12 @@ public class Juego extends Canvas implements KeyListener{
 		try {
 			imagenes.put("auto", ImageIO.read(getClass().getResource("/recursos/auto.png")));
 			imagenes.put("auto2", ImageIO.read(getClass().getResource("/recursos/auto2.png")));
+			imagenes.put("auto-furioso", ImageIO.read(getClass().getResource("/recursos/auto-furioso.png")));
+			imagenes.put("auto-furioso2", ImageIO.read(getClass().getResource("/recursos/auto-furioso2.png")));
 			imagenes.put("fondo", ImageIO.read(getClass().getResource("/recursos/background1.png")));
+			imagenes.put("fondo2", ImageIO.read(getClass().getResource("/recursos/background2.png")));
+			imagenes.put("heart", ImageIO.read(getClass().getResource("/recursos/heart.png")));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -95,14 +106,18 @@ public class Juego extends Canvas implements KeyListener{
         g2D.fillRect(0, 0, ANCHO_VENTANA, ALTO_VENTANA); //Dibujar un rectangulo
         g2D.setColor(Color.WHITE); //Definir el color blanco en el contexto
 
-        g2D.drawImage(imagenes.get("fondo"),0,0,this);
+        //g2D.drawImage(imagenes.get("fondo"),0,0,this);
+        fondo.dibujar(g2D, this);
         jugador.dibujar(g2D, this);
+        item.dibujar(g2D, this);
         dobleBuffer.show(); //Mostrar lo que se ha dibujado
 	}
 
 	public void actualizar(){
 		//System.out.println("Actualizando");
 		jugador.mover();
+		fondo.mover();
+		item.mover();
 	}
 
 	public void cicloPrincipal(){

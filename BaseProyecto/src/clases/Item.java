@@ -5,7 +5,7 @@ import java.awt.image.ImageObserver;
 
 import juego.Juego;
 
-public class Jugador {
+public class Item {
 	private int x;
 	private int y;
 	private int anchoImagen;
@@ -14,9 +14,7 @@ public class Jugador {
 	private int velocidad=2;
 	//private String llaveImagen2;
 
-	private int contadorIteraciones;
-
-	public Jugador(int x, int y, int anchoImagen, int altoImagen, String llaveImagen) {
+	public Item(int x, int y, int anchoImagen, int altoImagen, String llaveImagen) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -25,14 +23,13 @@ public class Jugador {
 		this.llaveImagen = llaveImagen;
 	}
 
-	public Jugador(int x, int y, String llaveImagen) {
+	public Item(int x, int y, String llaveImagen) {
 		this.x = x;
 		this.y = y;
 		this.llaveImagen = llaveImagen;
-		//this.llaveImagen = llaveImagen2;
 	}
 
-	public Jugador(){}
+	public Item(){}
 
 	public int getX() {
 		return x;
@@ -82,35 +79,13 @@ public class Jugador {
 		this.velocidad = velocidad;
 	}
 
-	@Override
-	public String toString() {
-		return "Jugador [x=" + x + ", y=" + y + ", anchoImagen=" + anchoImagen + ", altoImagen=" + altoImagen
-				+ ", llaveImagen=" + llaveImagen + "]";
-	}
 
 	public void dibujar(Graphics2D g2D, ImageObserver imgObs){
 		g2D.drawImage(Juego.imagenes.get(llaveImagen),x,y,imgObs);
 	}
 
 	public void mover(){
-		contadorIteraciones++;
-
-		if(contadorIteraciones<=3 && velocidad==2 ){
-			llaveImagen = "auto2";
-		}else if (contadorIteraciones>=6 && velocidad==2){
-			llaveImagen = "auto";
-			contadorIteraciones = 0;
-		}else if(contadorIteraciones<=3 && velocidad==5 ){
-			llaveImagen = "auto-furioso2";
-		}else if (contadorIteraciones>=6 && velocidad==5){
-			llaveImagen = "auto-furioso";
-			contadorIteraciones = 0;
-		}
-
-		if (this.x>Juego.ANCHO_VENTANA)
-			this.x=-100;
-		else
-			this.x+=velocidad;
+		this.x-=velocidad;
 	}
 
 }
