@@ -1,6 +1,8 @@
 package clases;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 
 import juego.Juego;
@@ -12,25 +14,20 @@ public class Jugador {
 	private int altoImagen;
 	private String llaveImagen;
 	private int velocidad=2;
+	private int vidas=3;
 	//private String llaveImagen2;
 
 	private int contadorIteraciones;
 
-	public Jugador(int x, int y, int anchoImagen, int altoImagen, String llaveImagen) {
+	public Jugador(int x, int y, String llaveImagen) {
 		super();
 		this.x = x;
 		this.y = y;
-		this.anchoImagen = anchoImagen;
-		this.altoImagen = altoImagen;
 		this.llaveImagen = llaveImagen;
+		this.anchoImagen = Juego.imagenes.get(this.llaveImagen).getWidth();
+		this.altoImagen = Juego.imagenes.get(this.llaveImagen).getHeight();
 	}
 
-	public Jugador(int x, int y, String llaveImagen) {
-		this.x = x;
-		this.y = y;
-		this.llaveImagen = llaveImagen;
-		//this.llaveImagen = llaveImagen2;
-	}
 
 	public Jugador(){}
 
@@ -90,6 +87,12 @@ public class Jugador {
 
 	public void dibujar(Graphics2D g2D, ImageObserver imgObs){
 		g2D.drawImage(Juego.imagenes.get(llaveImagen),x,y,imgObs);
+		g2D.setColor(new Color(255,0,0));
+		g2D.drawRect(x, y, anchoImagen, altoImagen);
+	}
+
+	public Rectangle obtenerRectangulo(){
+		return new Rectangle(x, y, anchoImagen, altoImagen);
 	}
 
 	public void mover(){
@@ -111,6 +114,20 @@ public class Jugador {
 			this.x=-100;
 		else
 			this.x+=velocidad;
+	}
+
+
+	public int getVidas() {
+		return vidas;
+	}
+
+
+	public void setVidas(int vidas) {
+		this.vidas = vidas;
+	}
+
+	public void incrementarVidas(){
+		vidas++;
 	}
 
 }

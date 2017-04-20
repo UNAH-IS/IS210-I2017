@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -33,7 +34,7 @@ public class Juego extends Canvas implements KeyListener{
 	public static HashMap<String,BufferedImage> imagenes = new HashMap<String,BufferedImage>();
 	private Jugador jugador;
 	private Fondo fondo;
-	private Item item;
+	private ArrayList<Item> items;
 	public Juego(){
 		cargarImagenes();
 		inicializarObjetosJuego();
@@ -68,11 +69,25 @@ public class Juego extends Canvas implements KeyListener{
 	public void inicializarObjetosJuego(){
 		jugador =new Jugador(100,370, "auto");
 		fondo = new Fondo(0,0,"fondo");
-		item = new Item(300,390,"heart");
+		items = new ArrayList<Item>();
+		items.add(new Item(800,390,"heart"));
+		items.add(new Item(1200,390,"heart"));
+		items.add(new Item(2200,390,"heart"));
 	}
 
 	public void verificarColisiones(){
 		//System.out.println("Verificando colisiones");
+		for (int i = 0; i < items.size(); i++) {
+			if (jugador.obtenerRectangulo().intersects(items.get(i).obtenerRectangulo())){
+				if (!items.get(i).isCapturado()){
+					jugador.incrementarVidas();
+					items.get(i).setCapturado(true);
+				}
+			}
+		}
+
+		//else
+			//System.out.println("");
 	}
 
 	public void limpiarMemoria(){
@@ -109,7 +124,12 @@ public class Juego extends Canvas implements KeyListener{
         //g2D.drawImage(imagenes.get("fondo"),0,0,this);
         fondo.dibujar(g2D, this);
         jugador.dibujar(g2D, this);
-        item.dibujar(g2D, this);
+        for (int i = 0; i < items.size(); i++) {
+        	if (!items.get(i).isCapturado())
+        		items.get(i).dibujar(g2D, this);
+		}
+
+        g2D.drawString("Vidas "+jugador.getVidas(), 20, 50);
         dobleBuffer.show(); //Mostrar lo que se ha dibujado
 	}
 
@@ -117,7 +137,10 @@ public class Juego extends Canvas implements KeyListener{
 		//System.out.println("Actualizando");
 		jugador.mover();
 		fondo.mover();
-		item.mover();
+		for (int i = 0; i < items.size(); i++) {
+			items.get(i).mover();
+		}
+
 	}
 
 	public void cicloPrincipal(){

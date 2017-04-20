@@ -1,6 +1,8 @@
 package clases;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 
 import juego.Juego;
@@ -12,6 +14,7 @@ public class Item {
 	private int altoImagen;
 	private String llaveImagen;
 	private int velocidad=2;
+	private boolean capturado;
 	//private String llaveImagen2;
 
 	public Item(int x, int y, int anchoImagen, int altoImagen, String llaveImagen) {
@@ -27,6 +30,8 @@ public class Item {
 		this.x = x;
 		this.y = y;
 		this.llaveImagen = llaveImagen;
+		this.anchoImagen = Juego.imagenes.get(this.llaveImagen).getWidth();
+		this.altoImagen = Juego.imagenes.get(this.llaveImagen).getHeight();
 	}
 
 	public Item(){}
@@ -82,10 +87,24 @@ public class Item {
 
 	public void dibujar(Graphics2D g2D, ImageObserver imgObs){
 		g2D.drawImage(Juego.imagenes.get(llaveImagen),x,y,imgObs);
+		g2D.setColor(new Color(0,0,255));
+		g2D.drawRect(x, y, anchoImagen, altoImagen);
 	}
 
 	public void mover(){
 		this.x-=velocidad;
+	}
+
+	public Rectangle obtenerRectangulo(){
+		return new Rectangle(x, y, anchoImagen, altoImagen);
+	}
+
+	public boolean isCapturado() {
+		return capturado;
+	}
+
+	public void setCapturado(boolean capturado) {
+		this.capturado = capturado;
 	}
 
 }
